@@ -27,8 +27,8 @@ print (alice_in_wonderland.count("'"))
 моря становить 37 800 км2. Яку площу займають Чорне та Азов-
 ське моря разом?
 """
-Black_Sea_square = 436.402
-Azov_Sea_square = 37.800
+Black_Sea_square = 436402
+Azov_Sea_square = 37800
 Total_square = Black_Sea_square + Azov_Sea_square
 print(f"{Total_square}" + " km2 ")
 
@@ -47,7 +47,7 @@ Supermarkets_Two_and_Three = 222950
 
 Supermarkets_One = Supermarket_Total - Supermarkets_Two_and_Three
 Supermarkets_Three = Supermarket_Total - Supermarkets_One_and_Two
-Supermarkets_Two = Supermarket_Total -(Supermarkets_One + Supermarkets_Three)
+Supermarkets_Two = Supermarkets_One_and_Two - Supermarkets_One
 
 print(f"{Supermarkets_One}" + " items ")
 print(f"{Supermarkets_Three}" + " items ")
