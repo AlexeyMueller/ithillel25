@@ -12,31 +12,37 @@
 Для встановлення значень атрибутів використовуйте метод __setattr__."""
 
 class Rhombus:
-        def __init__(self):
-                pass
+    def __init__(self, side_a, angle_a):
+        self.side_a = side_a      # піде через __setattr__
+        self.angle_a = angle_a   # автоматично створить angle_b
 
-        def __setattr__(self, name, value):
-            if name == "side_a":
-                if value > 0:
-                    object.__setattr__(self, name, value)
-                else:
-                    print("Сторона має бути більшою за 0")
-
-            elif name == "angle_a":
+    def __setattr__(self, name, value):
+        if name == "side_a":
+            if value > 0:
                 object.__setattr__(self, name, value)
-                object.__setattr__(self, "angle_b", 180 - value)
-
-            elif name == "angle_b":
-                print("angle_b розраховується автоматично. Не можна змінювати напряму.")
-
             else:
-                object.__setattr__(self, name, value)
+                raise ValueError("Сторона має бути більшою за 0")
 
-a = Rhombus()
-a.angle_a = 60 # OK, angle_b має стати 120
+        elif name == "angle_a":
+            if not (0 < value < 180):
+                raise ValueError("Кут має бути між 0 і 180")
+            object.__setattr__(self, name, value)
+            object.__setattr__(self, "angle_b", 180 - value)
 
-print(a.angle_b)   # → 120
-a.angle_b = 90
+        elif name == "angle_b":
+            raise AttributeError("angle_b розраховується автоматично")
+
+        else:
+            object.__setattr__(self, name, value)
+
+a = Rhombus(5, 60)
+
+print(a.angle_a)  # 60
+print(a.angle_b)  # 120
+print(a.side_a)  # 5
+
+
+
 
 
 
